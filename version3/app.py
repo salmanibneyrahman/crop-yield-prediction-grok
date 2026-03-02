@@ -11,16 +11,18 @@ st.set_page_config(page_title="Bangladesh Crop & Yield Advisor", page_icon="🌾
 @st.cache_resource
 def load_models():
     try:
-        yield_model = joblib.load('yield_model.pkl')
-        crop_model = joblib.load('crop_model.pkl')
-        le_crop = joblib.load('label_encoder_crop.pkl')
-        season_le = joblib.load('label_encoder_season.pkl')
-        soil_le = joblib.load('label_encoder_soil.pkl')
-        yield_feature_names = joblib.load('yield_feature_names.pkl')
-        crop_feature_names = joblib.load('crop_feature_names.pkl')
-        season_classes = joblib.load('season_classes.pkl')
-        district_classes = joblib.load('district_classes.pkl')
-        soil_classes = joblib.load('soil_classes.pkl')
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+yield_model = joblib.load(os.path.join(BASE_DIR, 'yield_model.pkl'))
+crop_model = joblib.load(os.path.join(BASE_DIR, 'crop_model.pkl'))
+le_crop = joblib.load(os.path.join(BASE_DIR, 'label_encoder_crop.pkl'))
+season_le = joblib.load(os.path.join(BASE_DIR, 'label_encoder_season.pkl'))
+soil_le = joblib.load(os.path.join(BASE_DIR, 'label_encoder_soil.pkl'))
+yield_feature_names = joblib.load(os.path.join(BASE_DIR, 'yield_feature_names.pkl'))
+crop_feature_names = joblib.load(os.path.join(BASE_DIR, 'crop_feature_names.pkl'))
+season_classes = joblib.load(os.path.join(BASE_DIR, 'season_classes.pkl'))
+district_classes = joblib.load(os.path.join(BASE_DIR, 'district_classes.pkl'))
+soil_classes = joblib.load(os.path.join(BASE_DIR, 'soil_classes.pkl'))
 
         st.success("✅ All models & encoders loaded (exact match to notebook)")
         return {
